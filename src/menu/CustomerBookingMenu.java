@@ -5,6 +5,11 @@ import service.BookingService;
 import util.AppState;
 import java.util.*;
 
+/**
+ * Müşterilerin rezervasyon işlemlerini gerçekleştirdiği konsol arayüzünü yöneten sınıf.
+ * Kullanıcının rezervasyon, seans görüntüleme ve iptal etme işlemlerini içerir .
+ */
+
 public class CustomerBookingMenu {
 
     private final Scanner sc = new Scanner(System.in);
@@ -17,7 +22,9 @@ public class CustomerBookingMenu {
             return;
         }
 
-        //Kullanıcı Rezervasyon Görüntüleme
+        /**
+         * Kullanıcının Rezervasyon seçeneklerini görüntüleyen metot.
+         */
 
         while (true) {
 
@@ -39,7 +46,9 @@ public class CustomerBookingMenu {
         }
     }
 
-    //Aktif Seans Görüntüleme
+    /**
+     * Kullanıcının aktif olan rezervasyonlarını görüntüleyen metot.
+     */
 
     private void showActiveBookings() {
 
@@ -60,7 +69,9 @@ public class CustomerBookingMenu {
         cancelBooking(list);
     }
 
-    //Seans İptal Etme
+    /**
+     * Kullanıcının aktif rezervasyonunu iptal eden metot.
+     */
 
     private void cancelBooking(List<ShowTime> bookings) {
 
@@ -117,7 +128,9 @@ public class CustomerBookingMenu {
         }
     }
 
-    //Geçmiş Seans Görüntüleme
+    /**
+     * Kullanıcının geçmiş olan rezervasyonlarını görüntüleyen metot.
+     */
 
     private void showPastBookings() {
 

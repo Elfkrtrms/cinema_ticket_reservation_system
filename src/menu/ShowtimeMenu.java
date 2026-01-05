@@ -6,6 +6,10 @@ import java.util.*;
 import util.AppState;
 import customer.Login;
 
+/**
+ * Bir film seçildikten sonra, o filmin seanslarını listeleyen ve kullanıcıdan seçim yapmasını isteyen sınıftır.
+ */
+
 public class ShowtimeMenu {
 
     private final Movie movie;

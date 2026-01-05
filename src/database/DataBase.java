@@ -2,6 +2,10 @@ package database;
 
 import java.sql.*;
 
+/**
+ * Kullanıcı bilgilerini Database'e ulaştıran sınıf.
+ */
+
 public class DataBase {
 
     private static final String URL = "jdbc:sqlite:DataBase.db";
@@ -13,15 +17,17 @@ public class DataBase {
         createBookingTable();
     }
 
-    //DataBase'e Bağlanma
+    /**
+     * DataBase.db'ye bağlantıyı sağlar.
+     */
 
     public static Connection connect() throws SQLException {
         return DriverManager.getConnection(URL);
     }
 
-    //TABLOLAR
-
-    //Kullanıcı Tablosu Ekleme
+    /**
+     * Kullanıcı, Film, Seans ve Rezervasyon tablolarını oluşturan metotlar.
+     */
 
     private static void createUserTable() {
         String sql = """
@@ -34,8 +40,6 @@ public class DataBase {
         execute(sql);
     }
 
-    //Film Ekleme
-
     private static void createMovieTable() {
         String sql = """
             CREATE TABLE IF NOT EXISTS movies (
@@ -47,8 +51,6 @@ public class DataBase {
         """;
         execute(sql);
     }
-
-    //Seans Ekleme
 
     private static void createShowtimeTable() {
         String sql = """
@@ -63,8 +65,6 @@ public class DataBase {
         """;
         execute(sql);
     }
-
-    //Reservasyon
 
     private static void createBookingTable() {
         String sql = """
@@ -92,9 +92,9 @@ public class DataBase {
         }
     }
 
-    //KULLANICI İŞLEMLERİ
-
-    //Kullanıcı Ekleme
+    /**
+     * Kullanıcı bilgilerini alarak yeni kullanıcıyı Database'ye ekleyen metot.
+     */
 
     public static boolean addUser(String username, String password) {
 
@@ -113,7 +113,9 @@ public class DataBase {
         }
     }
 
-    //Giriş Kontrolü
+    /**
+     * Kullanıcı girişi bilgilerini kontrol eden metot .
+     */
 
     public static boolean checkLogin(String username, String password) {
 
@@ -135,7 +137,9 @@ public class DataBase {
         return false;
     }
 
-    //Tüm Filmleri Seçme
+    /**
+     * Mevcut olan tüm filmleri gösteren metot.
+     */
 
     public static ResultSet selectAllMovies(Connection c) throws SQLException {
         String sql = "SELECT * FROM movies";

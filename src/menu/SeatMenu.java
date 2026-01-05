@@ -5,6 +5,10 @@ import service.BookingService;
 import util.AppState;
 import java.util.*;
 
+/**
+ * Filmlerin seans seçenekleri ve koltuk rezervasyonu sağlayan sınıftır.
+ */
+
 public class SeatMenu {
 
     private final List<Integer> selectedSeats = new ArrayList<>();
@@ -21,7 +25,9 @@ public class SeatMenu {
         Movie movie = showTime.getMovie();
         double price = movie.getPrice();
 
-        //Seçilen Seans Gösterimi
+        /**
+         * Seçilen film seansının koltuk rezervasyonu sağlayan metot.
+         */
 
         System.out.println("\n≈≈≈ SEANS DETAYI ≈≈≈");
         System.out.println("Film: " + movie.getTitle());
@@ -78,7 +84,9 @@ public class SeatMenu {
         }
     }
 
-    //Salon Koltukları Gösterimi
+    /**
+     * Film seansının mevcut koltuklarını gösteren metot.
+     */
 
     private void drawSeats() {
 
@@ -95,7 +103,9 @@ public class SeatMenu {
         }
     }
 
-    //Rezervasyon Onayı
+    /**
+     * Seçilen koltuğun rezervastonunu onatlayan metot..
+     */
 
     private void confirmBooking(double price) {
 

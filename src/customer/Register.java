@@ -3,12 +3,18 @@ package customer;
 import service.AuthService;
 import java.util.Scanner;
 
-//Kullanıcı Kayıt Yeri
+/**
+ * Kullanıcıların üye kaydını sağladığı sınıf.
+ */
 
 public class Register {
 
     private final Scanner sc;
     private final AuthService auth;
+
+    /**
+     * Verilen kullanıcı adı ve şifreyi alarak Database'e kaydeder.
+     */
 
     public Register() {
         sc = new Scanner(System.in);

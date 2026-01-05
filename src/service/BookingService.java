@@ -5,9 +5,25 @@ import java.sql.*;
 import java.util.*;
 import movie.*;
 
+/**
+ * Rezervasyon işlemlerini yöneten servis sınıfı.
+ * Koltuğun dolu olup olmadığını kontrol eder ve veritabanına kaydeder.
+ */
+
 public class BookingService {
 
+    /**
+     * Koltuğun rezerve edilmeye uygun olup olmadığını kontrol eden metot.
+     */
+
     public boolean bookSeat(int userId, int showtimeId, int seatNumber) {
+
+        // Koltuk numarası 0 veya olamaz
+
+        if (seatNumber <= 0 || seatNumber > 30) {
+            System.out.println("❌ Hata: Geçersiz koltuk numarası! (1-30 arası olmalı)");
+            return false;
+        }
 
         //Geçmiş Seans Kontrolü
 
@@ -53,6 +69,10 @@ public class BookingService {
         return false;
     }
 
+    /**
+     * Koltuğun rezerve edilmeye uygun olup olmadığını kontrol eden metot.
+     */
+
     public Set<Integer> getOccupiedSeats(int showtimeId) {
 
         Set<Integer> seats = new HashSet<>();
@@ -75,7 +95,9 @@ public class BookingService {
         return seats;
     }
 
-    //Kullanıcı Rezervasyonlarını Alma
+    /**
+     * Rezerve edilen seansları gösteren metot.
+     */
 
     public List<ShowTime> getUserBookings(int userId, boolean onlyFuture) {
 
@@ -153,7 +175,9 @@ public class BookingService {
         return new ArrayList<>(map.values());
     }
 
-    //Rezervasyon İptali
+     /**
+     * Rezerve edilmiş aktif bir seanstı iptal eden metot.
+     */
 
     public boolean cancelBooking(int userId, int showtimeId) {
 
@@ -172,6 +196,10 @@ public class BookingService {
 
         return false;
     }
+
+    /**
+     * Seeansın geçmişte kalıp kalmadığını kontrol eden metot.
+     */
 
     private boolean isShowtimeInPast(int showtimeId) {
 

@@ -4,6 +4,10 @@ import movie.Movie;
 import service.MovieService;
 import java.util.*;
 
+/**
+ * Rezerve edilebilen filmleri ve çeşitli seçeneklerini gösteren sınıftır.
+ */
+
 public class MovieMenu {
 
     private final Scanner sc = new Scanner(System.in);
@@ -11,7 +15,9 @@ public class MovieMenu {
 
     public void start() {
 
-        //Film Listesi
+        /**
+         * Rezerve edilebilen filmleri gösteren metot.
+         */
 
         while (true) {
 
@@ -40,7 +46,9 @@ public class MovieMenu {
         }
     }
 
-    //Seçilen Film Seçenekleri
+    /**
+     * Seçilmiş filmin çeşitli seçeneklerini gösteren metot.
+     */
 
     private void movieActionMenu(Movie movie) {
 

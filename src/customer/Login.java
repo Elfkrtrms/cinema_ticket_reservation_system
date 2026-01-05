@@ -4,11 +4,16 @@ import util.AppState;
 import service.AuthService;
 import java.util.Scanner;
 
-//Kullanıcı Girişi
+/**
+ * Kullanıcıların üye girişini sağladığı sınıf.
+ */
 
 public class Login {
 
-    public static String girisYapanKullaniciAdi;
+    /**
+     * Verilen kullanıcı adı ve şifreyi kontrol ederek giriş işlemini yapar.
+     */
+
     private final Scanner sc = new Scanner(System.in);
     private final AuthService auth = new AuthService();
 

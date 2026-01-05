@@ -5,9 +5,12 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ShowTimeServiceTest {
+/**
+ * ShowTimeService sınıfının metotlarını test eden sınıf.
+ * Veritabanından seans bilgilerinin (tarih, saat) doğru çekilip çekilmediğini doğrular.
+ */
 
-    //Doğru Seansları GEtirme Testi
+class ShowTimeServiceTest {
 
     @Test
     void testGetShowtimesByMovie() {

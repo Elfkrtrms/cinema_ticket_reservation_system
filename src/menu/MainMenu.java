@@ -1,15 +1,17 @@
 package menu;
 
 import java.util.Scanner;
-import customer.Login;
-import customer.Register;
+import customer.*;
 import util.AppState;
+
+/**
+ * Uygulamanın başlangıç ekranını ve ana menü seçeneklerini oluşturur.
+ * Kullanıcıların giriş yapma, kayıt olma veya çıkış yapma işlemlerini başlattığı sınıftır.
+ */
 
 public class MainMenu {
 
     private final Scanner sc = new Scanner(System.in);
-
-    //Ana Menü Görüntüleme
 
     public void start() {
 
@@ -41,7 +43,9 @@ public class MainMenu {
         }
     }
 
-    //Giriş Yapmamış Kullanıcı Menüsü
+    /**
+     * Giriş yapmamış kullanıcının ana menü seçeneklerini içeren metot.
+     */
 
     private void handleGuestMenu(int choice) {
         switch (choice) {
@@ -53,7 +57,9 @@ public class MainMenu {
         }
     }
 
-    //Giriş Yapmış Kullanıcı Menüsü
+    /**
+     * Giriş yapmış kullanıcının ana menü seçeneklerini içeren metot.
+     */
 
     private void handleUserMenu(int choice) {
         switch (choice) {
@@ -65,7 +71,9 @@ public class MainMenu {
         }
     }
 
-    //Çıkş Yapma
+    /**
+     * Giriş yapmış kullanıcının çıkış yapmasını sağlayan metot.
+     */
 
     private void logout() {
         AppState.loggedUserId = -1;

@@ -1,5 +1,10 @@
 package movie;
 
+/**
+ * Filmlerin işlemlerini temsil eden sınıf.
+ * Film bilgilerini içerir.
+ */
+
 public abstract class Movie {
 
     protected int id;

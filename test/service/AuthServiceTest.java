@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Kullanıcı giriş ve kayıt senaryolarını test eder.
+ * Yanlış şifre veya olmayan kullanıcı durumlarını kontrol eder.
+ */
+
 class AuthServiceTest {
 
     //Doğru bilgilerle giriş testi

@@ -5,9 +5,16 @@ import database.DataBase;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * Filmlere ait seans bilgilerini yöneten servis sınıfı.
+ * Veritabanından belirli bir filme ait seansları çeker ve listeler.
+ */
+
 public class ShowTimeService {
 
-    //Filmlerin Seanslarını Alma
+    /**
+     * Filmlere ait seans bilgilerini gösteren metot.
+     */
 
     public List<ShowTime> getShowtimesByMovieId(int movieId) {
 

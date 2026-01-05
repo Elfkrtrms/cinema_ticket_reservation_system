@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Test;
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * BookingService sınıfının iş mantığını doğrulayan test sınıfı.
+ * Rezervasyon yapma, kapasite kontrolü (Boundary Analysis) ve iptal işlemlerini test eder.
+ */
+
 class BookingServiceTest {
 
     @Test

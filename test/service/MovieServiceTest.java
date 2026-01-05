@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Film ve seans işlemlerinin beklendiği gibi çalışıp çalışmadığını test eder.
+ */
+
 class MovieServiceTest {
 
     @Test

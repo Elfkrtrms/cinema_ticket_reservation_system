@@ -1,14 +1,14 @@
 package service;
 
 import database.DataBase;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
+/**
+ * Kullanıcı kimlik doğrulama ve kayıt işlemlerini yöneten servis sınıfıdır.
+ * Kullanıcı girişini doğrular ve yeni üye kaydı oluşturur.
+ */
 
 public class AuthService {
-
-    //Kullanıcı Kayıt Bilgileri Girişi
 
     public boolean register(String username, String password) {
         if (username == null || username.isBlank()

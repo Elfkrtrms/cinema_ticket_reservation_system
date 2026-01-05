@@ -2,9 +2,16 @@ package movie;
 
 import java.util.*;
 
+/**
+ * Filmlerin seans işlemlerini temsil eden sınıf.
+ * Film seans detaylarını getiren metotu içerir.
+ */
+
 public class ShowTime {
 
-    //Seans Detayları
+    /**
+     * Seans detaylarnını getiren metot.
+     */
 
     private List<Integer> seats = new ArrayList<>();
     private int id;

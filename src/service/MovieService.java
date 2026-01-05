@@ -5,9 +5,16 @@ import movie.*;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * Filmlere ait bilgilerini yöneten servis sınıfı.
+ * Veritabanından belirli bir filme ait seansları çeker ve listeler.
+ */
+
 public class MovieService {
 
-    //Film Verilerini Alma
+    /**
+     * Filmleri gösteren metot.
+     */
 
     public List<Movie> getAllMovies() {
 

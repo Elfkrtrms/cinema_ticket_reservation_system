@@ -1,5 +1,9 @@
 package customer;
 
+/**
+ * Sistemdeki müşteri rolünü temsil eden varlık sınıfı.
+ */
+
 public class Customer {
     private int id;
     private String username;

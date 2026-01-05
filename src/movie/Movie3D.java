@@ -1,5 +1,11 @@
 package movie;
 
+/**
+ * 3D filmlerin işlemlerini temsil eden sınıf.
+ * Film tipi ve fiyatı getiren metotlar içerir.
+ */
+
+
 public class Movie3D extends Movie {
 
     public Movie3D(int id, String title, int duration) {
