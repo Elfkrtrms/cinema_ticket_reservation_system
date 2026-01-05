@@ -1,0 +1,227 @@
+@startuml
+
+' --- GÖRSEL AYARLAR (IntelliJ için optimize edildi) ---
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam handwritten false
+skinparam packageStyle rectangle
+skinparam classBackgroundColor #FEFECE
+skinparam classBorderColor #A80036
+
+' --- UTIL PACKAGE ---
+package util {
+    class AppState {
+        + {static} int loggedUserId
+    }
+    interface Bookable {
+        + book() : boolean
+        + cancel() : boolean
+    }
+    class Main {
+        + {static} main(args : String[]) : void
+    }
+}
+
+' --- DATABASE PACKAGE ---
+package database {
+    class DataBase {
+        - {static} final URL : String
+        + {static} connect() : Connection
+        - {static} createUserTable() : void
+        - {static} createMovieTable() : void
+        - {static} createShowtimeTable() : void
+        - {static} createBookingTable() : void
+        + {static} addUser(u : String, p : String) : boolean
+        + {static} checkLogin(u : String, p : String) : boolean
+        + {static} selectAllMovies(c : Connection) : ResultSet
+    }
+}
+
+' --- CUSTOMER PACKAGE ---
+package customer {
+    class Customer {
+        - id : int
+        - username : String
+        + Customer(id : int, username : String)
+        + getId() : int
+        + getUsername() : String
+        + toString() : String
+    }
+    class Login {
+        + {static} girisYapanKullaniciAdi : String
+        - sc : Scanner
+        - auth : AuthService
+        + start() : void
+    }
+    class Register {
+        - sc : Scanner
+        - auth : AuthService
+        + Register()
+        + start() : void
+    }
+}
+
+' --- MOVIE PACKAGE ---
+package movie {
+    abstract class Movie {
+        # id : int
+        # title : String
+        # duration : int
+        + Movie(id : int, title : String, duration : int)
+        + getId() : int
+        + getTitle() : String
+        + getDuration() : int
+        + {abstract} getPrice() : double
+        + {abstract} getType() : String
+        + toString() : String
+    }
+    class Movie2D {
+        + Movie2D(id : int, title : String, duration : int)
+        + getPrice() : double
+        + getType() : String
+    }
+    class Movie3D {
+        + Movie3D(id : int, title : String, duration : int)
+        + getPrice() : double
+        + getType() : String
+    }
+    class Seat {
+        - number : int
+        - isOccupied : boolean
+        + Seat(number : int, isOccupied : boolean)
+        + getNumber() : int
+        + isOccupied() : boolean
+        + setOccupied(occupied : boolean) : void
+        + toString() : String
+    }
+    class ShowTime {
+        - seats : List<Integer>
+        - id : int
+        - showTime : String
+        - hall : String
+        - movie : Movie
+        + ShowTime(id : int, time : String, hall : String, m : Movie)
+        + addSeat(seat : int) : void
+        + getSeats() : List<Integer>
+        + getMovie() : Movie
+        + toString() : String
+    }
+    class Booking {
+        + book() : boolean
+        + cancel() : boolean
+    }
+}
+
+' --- SERVICE PACKAGE ---
+package service {
+    class AuthService {
+        + register(u : String, p : String) : boolean
+        + login(u : String, p : String) : boolean
+        + getUserId(u : String) : int
+    }
+    class BookingService {
+        + bookSeat(userId : int, sId : int, seat : int) : boolean
+        + getOccupiedSeats(sId : int) : Set<Integer>
+        + getUserBookings(userId : int, future : boolean) : List<ShowTime>
+        + cancelBooking(userId : int, sId : int) : boolean
+        - isShowtimeInPast(sId : int) : boolean
+    }
+    class MovieService {
+        + getAllMovies() : List<Movie>
+    }
+    class ShowTimeService {
+        + getShowtimesByMovieId(mId : int) : List<ShowTime>
+    }
+}
+
+' --- MENU PACKAGE ---
+package menu {
+    class MainMenu {
+        - sc : Scanner
+        + start() : void
+        - handleGuestMenu(choice : int) : void
+        - handleUserMenu(choice : int) : void
+        - logout() : void
+    }
+    class MovieMenu {
+        - sc : Scanner
+        - movieService : MovieService
+        + start() : void
+        - movieActionMenu(movie : Movie) : void
+    }
+    class ShowtimeMenu {
+        - movie : Movie
+        - sc : Scanner
+        - showTimeService : ShowTimeService
+        + ShowtimeMenu(movie : Movie)
+        + start() : void
+    }
+    class SeatMenu {
+        - selectedSeats : List<Integer>
+        - showTime : ShowTime
+        - bookingService : BookingService
+        + SeatMenu(showTime : ShowTime)
+        + start() : void
+        - drawSeats() : void
+        - confirmBooking(price : double) : void
+    }
+    class CustomerBookingMenu {
+        - sc : Scanner
+        - bookingService : BookingService
+        + start() : void
+        - showActiveBookings() : void
+        - showPastBookings() : void
+        - cancelBooking(list : List<ShowTime>) : void
+    }
+}
+
+' --- İLİŞKİLER ---
+
+' Kalıtım (Inheritance)
+Movie <|-- Movie2D
+Movie <|-- Movie3D
+Bookable <|.. Booking
+
+' Menü Akışı (Dependency)
+Main ..> MainMenu : creates
+MainMenu ..> Login : creates
+MainMenu ..> Register : creates
+MainMenu ..> MovieMenu : creates
+MainMenu ..> CustomerBookingMenu : creates
+MainMenu ..> AppState : checks
+
+' Menü İçi Bağlantılar (Association & Dependency)
+MovieMenu --> MovieService : association
+MovieMenu ..> ShowtimeMenu : creates
+
+ShowtimeMenu --> ShowTimeService : association
+ShowtimeMenu --> Movie : association
+ShowtimeMenu ..> SeatMenu : creates
+ShowtimeMenu ..> Login : creates if guest
+
+SeatMenu --> BookingService : association
+SeatMenu --> ShowTime : association
+
+CustomerBookingMenu --> BookingService : association
+
+' Servis ve DB Bağlantıları
+Login --> AuthService : association
+Register --> AuthService : association
+
+AuthService ..> DataBase : calls
+MovieService ..> DataBase : calls
+ShowTimeService ..> DataBase : calls
+BookingService ..> DataBase : calls
+
+' Model İlişkileri
+MovieService ..> Movie2D : creates
+MovieService ..> Movie3D : creates
+BookingService ..> ShowTime : creates
+ShowTimeService ..> ShowTime : creates
+ShowTime --> Movie : has
+
+' --- YENİ EKLENEN İLİŞKİLER (Customer ve Seat) ---
+ShowTime "1" *-- "*" Seat : contains
+Login ..> Customer : validates
+
+@enduml
