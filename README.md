@@ -1,4 +1,4 @@
----Cinema Ticket Reservation System---
+# Cinema Ticket Reservation System
 
 Nesne Yönelimli Programlama (OOP) dersi dönem projesi olarak yaptığım sinema otomasyonu uygulaması.
 
